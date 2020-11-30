@@ -7,7 +7,7 @@ function create_geonode_user_and_database() {
 	psql -v ON_ERROR_STOP=1 --username "$POSTGRES_USER" <<-EOSQL
 		CREATE USER $db;
 		ALTER USER $db with encrypted password '$GEONODE_DATABASE_PASSWORD';
-		CREATE DATABASE $db;
+		CREATE DATABASE $db ENCODING WIN874;
 		GRANT ALL PRIVILEGES ON DATABASE $db TO $db;
 EOSQL
 }
@@ -18,7 +18,7 @@ function create_geonode_user_and_geodatabase() {
 	psql -v ON_ERROR_STOP=1 --username "$POSTGRES_USER" <<-EOSQL
 		CREATE USER $geodb;
 		ALTER USER $geodb with encrypted password '$GEONODE_GEODATABASE_PASSWORD';
-		CREATE DATABASE $geodb;
+		CREATE DATABASE $geodb ENCODING WIN874;
 		GRANT ALL PRIVILEGES ON DATABASE $geodb TO $geodb;
 EOSQL
 }
